@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+.justify{
+    display: flex;
+    justify-content: space-between;
+}
+
+.line{
+    position: relative;
+    width: 100%;
+    height: 200%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pict_wrapper{
+    position: relative;
+    width: 30%;
+    height: 100%;
+}
+
+.subline{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.box1{
+    left: 5%;
+}
+
+.box2{
+    position: relative;
+    left: -10%;
+}
+
+.title{
+    text-align: center;
+}
+
+.pict{
+    text-align: center;
+}

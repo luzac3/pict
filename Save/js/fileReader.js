@@ -29,7 +29,7 @@ function fileReader(event){
             const ctx = canvas.getContext("2d");
 
             canvas.width = imageWidth;
-            canvas.height = image.height;
+            canvas.height = image.Height;
 
             ctx.fillStyle = "gray";
             ctx.fillRect(0,0,100,100);

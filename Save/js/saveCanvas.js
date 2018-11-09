@@ -9,7 +9,7 @@ function saveCanvas(ext, fileName, canvasId){
     // base64をblob変換
     const BLOB = base64toBlob(BASE64, imgeType);
 
-    let arg_arr = {
+    let argArr = {
         blob:BLOB
         ,fileName:fileName
         ,code:""
@@ -23,4 +23,8 @@ function saveCanvas(ext, fileName, canvasId){
     document.getElementById("setter").appendChild(img);
 
     // DB保存
+    defaultAjax(argArr,"/pict/Save/dnUpload.php").then(function(data){
+        console.log(data);
+        alert("保存完了");
+    });
 }
