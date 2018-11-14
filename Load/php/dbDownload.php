@@ -15,7 +15,6 @@
             $decrypted = $encrypt.decrypt($row["code"],$row["key"]);
             array_push($imageArr, $decrypted);
         }
-
         echo json_encode($imageArr);
     }
 ?>
