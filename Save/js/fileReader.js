@@ -1,6 +1,6 @@
 function fileReader(event){
     const TARGET = event.target;
-    const FILES = target.files;
+    const FILES = TARGET.files;
 
     let file = FILES[0];
 
@@ -29,7 +29,7 @@ function fileReader(event){
             const ctx = canvas.getContext("2d");
 
             canvas.width = imageWidth;
-            canvas.height = image.Height;
+            canvas.height = imageHeight;
 
             ctx.fillStyle = "gray";
             ctx.fillRect(0,0,100,100);

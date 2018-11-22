@@ -6,12 +6,12 @@ function db_connect(){
         $server ="localhost";
         $username="root";
         $password="alderaan";
-        $db_name="event_ease";
+        $db_name="pict";
     }else{
         $server ="mysql622.db.sakura.ne.jp";
         $username="wolfnet-twei";
         $password="alderaan123";
-        $db_name="wolfnet-twei_event_ease";
+        $db_name="wolfnet-twei_pict";
     }
 
     $mysqli = new mysqli($server,$username,$password,$db_name);

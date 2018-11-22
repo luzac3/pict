@@ -2,7 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<?php
+// headerの読み込みファイル(APIなど)のリスト
+readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
+?>
+<link rel="stylesheet" href="pict/Save/css/pict.css" type="text/css" media="screen">
+<script type="text/javascript" src="/pict/Save/js/copyCanvas.js"></script>
+<script type="text/javascript" src="/pict/Save/js/fileReader.js"></script>
+<script type="text/javascript" src="/pict/Save/js/main.js"></script>
+<script type="text/javascript" src="/pict/Save/js/saveCanvas.js"></script>
+<title>写真ロード</title>
 </head>
 <body>
     <div id = "reader">
@@ -19,8 +28,7 @@
 
 
     <div class = "" id = "ext"></div>
-    <div class = "" id = "ext"></div>
-    <div class = "" id = "ext"></div>
+    <div class = "" id = "fileName"></div>
 
 </body>
 </html>

@@ -10,8 +10,6 @@ function imageLoader(){
         // 複数ページを用意
     }
 
-
-
     for(let i = 0; i < imageNum; i++){
         let lineNumber = Math.floor(i / 4);
 
@@ -52,13 +50,16 @@ function detailImage(id){
 
     image.onload = function(){
         // Canvas部分にデータを読み込み
-        image.onload = imageSetter(image, canvas, canvasWidth, canvasHeight);
+        imageSetter(image, canvas, canvasWidth, canvasHeight);
+
+        let detail_pict = document.getElementbyId("detail_pict");
+        detail_pict.style.dsiplay = "block";
 
         // Detail用画面表示
-        // 要素を用意してサイズをあわせるポップアップ表示関数を呼び出し
-        const detail = document.getElementById("detail_pict");
+        sizeSet(0.9,detail_pict);
 
-        detail.style.display = "block";
+        detail_pict.getElementById("detail_name").text(result[0]["NAME"]);
+        detail_pict.getElementById("detail_name").text(result[0]["PHOTOGRAPHER"]);
     }
 
     image.src = result[0]["PCTR"];

@@ -2,6 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<?php
+// headerの読み込みファイル(APIなど)のリスト
+readfile($_SERVER['DOCUMENT_ROOT']."/bingo/common/html/header.html");
+?>
 <title>Insert title here</title>
 </head>
 <body>
@@ -56,6 +60,8 @@
     </div>
     <div id = "detail_content">
         <p id = "detail_name"></p>
+        <p id = "take_pict">撮影者</p>
+        <p id = "date">撮影日？</p>
     </div>
 </div>
 
