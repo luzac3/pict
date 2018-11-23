@@ -7,7 +7,7 @@ function saveCanvas(ext, fileName, canvasId){
     const BASE64 = canvas.toDataURL(imageType);
 
     // base64をblob変換
-    const BLOB = base64toBlob(BASE64, imgeType);
+    const BLOB = base64toBlob(BASE64, imageType);
 
     let argArr = {
         blob:BLOB
@@ -16,14 +16,14 @@ function saveCanvas(ext, fileName, canvasId){
         ,key:""
     }
 
-    const URL = URL.createObjectURL(BLOB);
+    const OBJECT_URL = URL.createObjectURL(BLOB);
 
-    let img = document.getElementById("setter").appendChild(img);
-    img.src = url;
+    let img = document.createElement("img");
+    img.src = OBJECT_URL;
     document.getElementById("setter").appendChild(img);
 
     // DB保存
-    defaultAjax(argArr,"/pict/Save/dnUpload.php").then(function(data){
+    defaultAjax(argArr,"/pict/Save/php/dbUpload.php").then(function(data){
         console.log(data);
         alert("保存完了");
     });

@@ -1,4 +1,4 @@
-function defaultAjax(argArr, phpAddr){
+function defaultAjax(argArr, phpAddr, time_out = 1000){
 
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -9,7 +9,9 @@ function defaultAjax(argArr, phpAddr){
             dataType: 'json',
             data:{
                 argArr:argArr
-            }
+            },
+            processData: false,
+            contentType: false
         }).then(
             function(data){
                 console.log(data);
