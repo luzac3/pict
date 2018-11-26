@@ -35,7 +35,7 @@ BEGIN
         LPAD(hex(cast(REVERSE(LPAD((MAX(CAST(PCTR_NO AS SIGNED)) + 1),5,"0")) as signed)),5,"0") AS PCTR_CD
         ,NAME
         ,PCTR
-        ,KEY
+        ,EC_KEY
         ,FAV_NUMBER
         ,DL_NUMBER
         ,TRK_DATE
