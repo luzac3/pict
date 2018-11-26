@@ -2,16 +2,17 @@ function defaultAjax(argArr, phpAddr, time_out = 1000){
 
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: phpAddr,
-            cache: false,
-            timeout: time_out,
-            type:'POST',
-            dataType: 'json',
-            data:{
+            url: phpAddr
+            ,cache: false
+            // ,timeout: time_out
+            ,type:'POST'
+            ,dataType: 'json'
+            ,data:{
                 argArr:argArr
-            },
-            processData: false,
-            contentType: false
+            }
+            //,processData: false
+            //,contentType: false
+            //,traditional: true
         }).then(
             function(data){
                 console.log(data);

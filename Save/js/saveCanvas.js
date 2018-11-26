@@ -10,7 +10,7 @@ function saveCanvas(ext, fileName, canvasId){
     const BLOB = base64toBlob(BASE64, imageType);
 
     let argArr = {
-        blob:BLOB
+        BASE64:BASE64
         ,fileName:fileName
         ,code:""
         ,key:""

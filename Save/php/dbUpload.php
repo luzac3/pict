@@ -7,7 +7,7 @@
         $argArr = $_POST["argArr"];
         $encrypt = new Encrypt();
 
-        $encryptArr = $encrypt.encrypt($argArr["blob"]);
+        $encryptArr = $encrypt -> encrypt($argArr["blob"]);
 
         $argArr["code"] = $encryptArr[0];
         $argArr["key"] = $encryptArr[1];
@@ -15,5 +15,7 @@
         $result = call_stored($argArr);
 
         echo json_encode($result);
+    }else{
+        echo json_encode(0);
     }
 ?>
