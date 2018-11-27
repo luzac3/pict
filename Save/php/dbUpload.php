@@ -7,7 +7,9 @@
         $argArr = $_POST["argArr"];
         $encrypt = new Encrypt();
 
-        $encryptArr = $encrypt -> encrypt($argArr["blob"]);
+        $binary = base64_decode($argArr["BASE64"]);
+
+        $encryptArr = $encrypt -> encrypt($binary);
 
         $argArr["code"] = $encryptArr[0];
         $argArr["key"] = $encryptArr[1];
