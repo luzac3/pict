@@ -5,9 +5,10 @@
 
     if(!empty($_POST["argArr"])){
         $argArr = $_POST["argArr"];
-        $encrypt = new Encrypt();
 
         $binary = base64_decode($argArr["BASE64"]);
+
+        $encrypt = new Encrypt();
 
         $encryptArr = $encrypt -> encrypt($binary);
 
