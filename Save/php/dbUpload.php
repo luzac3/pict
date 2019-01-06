@@ -15,7 +15,7 @@
         $argArr["code"] = $encryptArr[0];
         $argArr["key"] = $encryptArr[1];
 
-        $result = call_stored($argArr);
+        $result = stored($argArr);
 
         echo json_encode($result);
     }else{
