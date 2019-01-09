@@ -1,19 +1,16 @@
-DROP PROCEDURE IF EXISTS uploadPict;
+DROP PROCEDURE IF EXISTS downloadPict;
 DELIMITER //
 -- ********************************************************************************************
--- uploadPict 暗号化された画像データをアップロードする
+-- downloadPict 暗号化された画像データをダウンロードする
 --
 -- 【処理概要】
---  イベントとユーザーの番号が存在するかチェックする
+--  暗号化された画像データをダウンロードする
 --
 --
 -- 【呼び出し元画面】
 --   インデックス
 --
 -- 【引数】
---   _name           ：名称
---   _blob           ：画像データ
---   _key            ：暗号化キー
 --
 --
 -- 【戻り値】
@@ -24,31 +21,26 @@ DELIMITER //
 -- 【更新履歴】
 --  2018.6.05 大杉　新規作成
 -- ********************************************************************************************
-CREATE PROCEDURE `uploadPict`(
-    IN `_name` VARCHAR(40)
-    ,`_blob` BLOB(500)
-    , IN `_key` VARCHAR(16)
-    , OUT `exit_cd` INTEGER
+CREATE PROCEDURE `downloadPict`(
+    `exit_cd` INTEGER
 )
-COMMENT '写真許可判定'
+COMMENT '写真取得処理'
 
 BEGIN
 
     -- 異常終了ハンドラ
     DECLARE EXIT HANDLER FOR SQLEXCEPTION SET exit_cd = 99;
 
-    INSERT INTO
-        T_PCTR_MSTR
-    VALUES(
-        PCTR_NO + 1
-        ,_name
-        ,null
-        ,_blob
-        ,_key
-        ,0
-        ,0
-        ,NOW(3)
-    )
+    SELECT
+        LPAD(hex(cast(REVERSE(LPAD((MAX(CAST(PCTR_NO AS SIGNED)) + 1),5,"0")) as signed)),5,"0") AS PCTR_CD
+        ,NAME
+        ,PCTR
+        ,EC_KEY
+        ,FAV_NUMBER
+        ,DL_NUMBER
+        ,TRK_DATE
+    FROM
+        T_PCTR
     ;
 
 END
