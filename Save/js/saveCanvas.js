@@ -7,7 +7,7 @@ function saveCanvas(ext, fileName, canvasId){
     const BASE64 = canvas.toDataURL(imageType);
 
     // base64をblob変換
-    const BLOB = base64toBlob(BASE64, imageType);
+    // const BLOB = base64toBlob(BASE64, imageType);
 
     let argArr = {
         BASE64:BASE64
