@@ -26,7 +26,7 @@ DELIMITER //
 -- ********************************************************************************************
 CREATE PROCEDURE `uploadPict`(
     IN `_name` VARCHAR(40)
-    ,IN `_blob` BLOB(500)
+    ,IN `_blob` VARCHAR(500)
     , IN `_key` VARCHAR(16)
     , IN `_ext` VARCHAR(5)
     , OUT `exit_cd` INTEGER
@@ -57,6 +57,8 @@ BEGIN
     FROM
         T_PCT
     ;
+    
+    SET exit_cd = 0;
 
 END
 //
