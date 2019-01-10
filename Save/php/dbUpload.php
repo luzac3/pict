@@ -12,10 +12,14 @@
 
         $encryptArr = $encrypt -> encrypt($binary);
 
-        $argArr["code"] = $encryptArr[0];
-        $argArr["key"] = $encryptArr[1];
+        $postArgArr = array(
+          ""
+          ,$encryptArr[0]
+          ,$encryptArr[1]
+          ,""
+        );
 
-        $result = stored($argArr);
+        $result = stored("uploadPict",$postArgArr);
 
         echo json_encode($result);
     }else{
