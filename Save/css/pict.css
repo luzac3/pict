@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .hidden{
-    visibility:hidden
+    visibility:hidden;
 }
 
 #wrapper{

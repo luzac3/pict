@@ -6,7 +6,7 @@
 // headerの読み込みファイル(APIなど)のリスト
 readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
 ?>
-<link rel="stylesheet" href="pict/Save/css/pict.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/pict/Save/css/pict.css" type="text/css" media="screen">
 <script type="text/javascript" src="/pict/Save/js/copyCanvas.js"></script>
 <script type="text/javascript" src="/pict/Save/js/fileReader.js"></script>
 <script type="text/javascript" src="/pict/Save/js/main.js"></script>
@@ -20,13 +20,29 @@ readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
             <input type="file" id = "files" name = "files[]" multiple />
         </form>
     </div>
-    <button type = "button" id = "copyCanvas">キャンバス複製</button>
+
+    <p>
+      <button type = "button" id = "sht_button">撮影者を選択</button>
+      投稿者が撮影<input type="checkbox" value="sht_own" "checked">
+      <input type="text" readonly="readonly">
+    </p>
+
+    <p>
+  　  <button type = "button" id = "sbjct_button">被写体を選択</button>
+      被写体なし<input type="checkbox" value="sbjct_none" "checked">
+      <input type="text" id = "sbjct" readonly="readonly">
+      <a id = "sbjct_all">すべて表示</a>
+    </p>
+
+    <p>タイトル<input type="text" id="title"></p>
+
+    <button type = "button" id = "copyCanvas">アップロード</button>
+
     <div>
         <canvas id ="canvas" class = "hidden"></canvas>
     </div>
 
     <div id = "setter" ></div>
-
 
     <div class = "" id = "ext"></div>
     <div class = "" id = "fileName"></div>

@@ -33,7 +33,6 @@ function stored($stored_cd,$arr_arg = null){
 
     if($stmt->execute()){
         if($result = $mysqli -> query("SELECT @exit_cd AS exit_cd")){
-        //if($result = $mysqli -> query()){
             while ($row = $result->fetch_assoc()) {
                 $data_array [] = $row;
             }
