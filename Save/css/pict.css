@@ -4,6 +4,10 @@
     visibility:hidden;
 }
 
+#userList{
+    overflow: scroll;
+}
+
 #wrapper{
     position:relative;
 }

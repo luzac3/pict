@@ -25,8 +25,10 @@ DELIMITER //
 --  2018.6.05 大杉　新規作成
 -- ********************************************************************************************
 CREATE PROCEDURE `uploadPict`(
-    IN `_name` VARCHAR(40)
-    ,IN `_blob` VARCHAR(500)
+    IN `_evnt_num` VARCHAR(5)
+    , IN `_ttl` VARCHAR(50)
+    , IN `_sht` VARCHAR(5)
+    , IN `_blob` VARCHAR(500)
     , IN `_key` VARCHAR(16)
     , IN `_ext` VARCHAR(5)
     , OUT `exit_cd` INTEGER
@@ -44,20 +46,33 @@ BEGIN
         SET exit_cd = 99;
     END;
 
+    SET @date = NOW(3);
+
     INSERT INTO
         T_PCT
     SELECT
-        "00000"
+        _evnt_num           -- イベント通番
         ,LPAD(CAST(MAX(CAST(PCT_NO AS INTEGER)) + 1 AS CHAR),4,0)         -- 写真番号
-        ,"00000"            -- 撮影者連番
+        ,_ttl               -- タイトル
+        ,_sht               -- 撮影者ユーザー番号
         ,_blob              -- 写真データ
-        ,_key               -- 複合キー
-        ,NOW(3)
-        ,NOW(3)
+        ,_key               -- 復号キー
+        ,@date
+        ,@date
     FROM
         T_PCT
     ;
-    
+
+    SELECT
+        PCT_NO
+    FROM
+        T_PCT
+    WHERE
+        EVNT_NUM = _evnt_num
+    AND
+        TRK_NTJ = @date
+    ;
+
     SET exit_cd = 0;
 
 END

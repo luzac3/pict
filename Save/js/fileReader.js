@@ -36,14 +36,10 @@ function fileReader(event){
 
             ctx.drawImage(image,0,0);
 
-            // 逆16進暗号ナンバー付与
-            let number = "00000";
-
             document.getElementById("ext").classList.add(ext);
-            document.getElementById("fileName").classList.add(number);
+            document.getElementById("fileName").classList.add(fileName);
         }
         image.src = thisImage.target.result;
     }
     reader.readAsDataURL(file);
 }
-

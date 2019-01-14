@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <?php
-// headerの読み込みファイル(APIなど)のリスト
-readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
+    // headerの読み込みファイル(APIなど)のリスト
+    $root = $_SERVER["DOCUMENT_ROOT"];
+    require_once $root . '/pict/common/php/stored.php';
+    readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
 ?>
 <link rel="stylesheet" href="/pict/Save/css/pict.css" type="text/css" media="screen">
-<script type="text/javascript" src="/pict/Save/js/copyCanvas.js"></script>
 <script type="text/javascript" src="/pict/Save/js/fileReader.js"></script>
 <script type="text/javascript" src="/pict/Save/js/main.js"></script>
 <script type="text/javascript" src="/pict/Save/js/saveCanvas.js"></script>
@@ -15,6 +16,27 @@ readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
 <title>写真ロード</title>
 </head>
 <body>
+    <form id = "userData" class = "none">
+        <input id="EVNT_NUM" value="00000">
+        <input id="USER_NUM" value="00000">
+        <input id="USER_NAME" value="testUser1">
+    </form>
+
+    <div id = "userSelect">
+        <p><input type="text"><button type = "button">検索</button></p>
+        <div id = "userList">
+        <?php
+            $argArr = array("00000","","","");
+            $result = stored("getUserList",$argArr);
+            forEach($userData as $result){
+                echo "<p id = '".$userData["USR_CD"]."' class = 'userData'>";
+                echo $userData["USR_NAME"];
+                echo "</p>";
+            }
+        ?>
+        </div>
+    </div>
+
     <div id = "reader">
         <form>
             <input type="file" id = "files" name = "files[]" multiple />
@@ -22,21 +44,22 @@ readfile($_SERVER['DOCUMENT_ROOT']."/pict/common/html/header.html");
     </div>
 
     <p>
-      <button type = "button" id = "sht_button">撮影者を選択</button>
-      投稿者が撮影<input type="checkbox" value="sht_own" "checked">
-      <input type="text" readonly="readonly">
+      <button type = "button" id = "sht_button" class = "input_button" "disabled">撮影者を選択</button>
+      投稿者が撮影<input id = "sht_own" class = "input_flg" type="checkbox" value="sht" "checked">
+      <input type="text" id = "sht" readonly="readonly">
     </p>
 
     <p>
-      <button type = "button" id = "sbjct_button">被写体を選択</button>
-      被写体なし<input type="checkbox" value="sbjct_none" "checked">
-      <input type="text" id = "sbjct" readonly="readonly">
+      <button type = "button" id = "sbjct_button" class = "input_button">被写体を選択</button>
+      被写体なし<input id = "sbjct_none" class = "input_flg" type="checkbox" value="sbjct">
+      <input type="text" id = "sbjct_show" readonly="readonly">
+      <input type="text" id = "sbjct" class = "none">
       <br><a id = "sbjct_all" href="javascript:void(0)">すべて表示</a>
     </p>
 
     <p>タイトル<input type="text" id="title"></p>
 
-    <button type = "button" id = "copyCanvas">アップロード</button>
+    <button type = "button" id = "uploadPict">アップロード</button>
 
     <div>
         <canvas id ="canvas" class = "hidden"></canvas>

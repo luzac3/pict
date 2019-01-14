@@ -13,10 +13,12 @@
         $encryptArr = $encrypt -> encrypt($binary);
 
         $postArgArr = array(
-          ""
+          $argArr["evntNum"]
+          ,$argArr["title"]
+          ,$argArr["sht"]
           ,$encryptArr[0]
           ,$encryptArr[1]
-          ,""
+          ,$argArr["ext"]
         );
 
         $result = stored("uploadPict",$postArgArr);
