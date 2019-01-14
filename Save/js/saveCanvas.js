@@ -38,7 +38,7 @@ function saveCanvas(ext, fileName, canvasId){
     }
 
     let argArr = {
-        ,evntNum:evntNum
+        evntNum:evntNum
         ,BASE64:BASE64
         ,title:title
         ,ext:EXT
