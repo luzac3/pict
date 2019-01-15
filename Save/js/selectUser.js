@@ -1,19 +1,16 @@
-function saveCanvas(ext, fileName, canvasId){
-    let imageType = "image/" + ext;
+function selectUser(){
+    // 背景を殺す
 
-    const CANVAS = document.getElementById(canvasId);
+    // オブジェクトを取得
 
-    // base64エンコードされたデータ
-    const BASE64 = canvas.toDataURL(imageType);
+    // ユーザ選択状態をリフレッシュ
+    clearUserDataSelect();
 
-    // base64をblob変換
-    const BLOB = base64toBlob(BASE64, imageType);
+    // ユーザ選択画面をアクティブ
+    document.getElementById("userSelect").style.visibility = "block";
 
-    const OBJECT_URL = URL.createObjectURL(BLOB);
+    // イベントリスナ登録
 
-    let img = document.createElement("img");
-    img.src = OBJECT_URL;
+    // OKイベントとキャンセルイベント
 
-    return img;
-    // document.getElementById("setter").appendChild(img);
 }

@@ -56,7 +56,7 @@ function userDataDropMouse(){
     this.classList.remove("wordWhite");
 }
 
-function clearUserDataSelect(except){
+function clearUserDataSelect(except = null){
     // 除外したデータを除き全ての項目を非選択状態に変更
     const DATA_LIST = document.getElementsByClassName("userData");
 

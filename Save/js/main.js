@@ -10,7 +10,6 @@ window.onload = function(){
     INPUT_BUTTON.addEventListener("change", selectUser, false);
     UPLOAD_PICT.addEventListener("click", saveCanvas, false);
     USER_DATA.addEventListner("click",userDataSelect,false);
-    USER_DATA.addEventListner("click",userDataDisSelect,false);
     USER_DATA.addEventListner("mouseover",userDataOnMouse,false);
     USER_DATA.addEventListner("mouseout",userDataDropMouse,false);
 }
