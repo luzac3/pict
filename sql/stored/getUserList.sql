@@ -23,7 +23,7 @@ DELIMITER //
 --      異常：99
 -- --------------------------------------------------------------------------------------------
 -- 【更新履歴】
---  2018.6.05 大杉　新規作成
+--  2019.1.14 大杉　新規作成
 -- ********************************************************************************************
 CREATE PROCEDURE `getUserList`(
     IN `_evnt_num` VARCHAR(5)
@@ -50,21 +50,24 @@ BEGIN
     ");
 
     IF IFNULL(_evnt_num, '') = '' THEN
-        SET @query = CONCAT(@query," DISTINCT");
-        -- join
+        SET @query = CONCAT(@query," DISTINCT ");
     END IF;
 
     SET @query = CONCAT(@query,"
-            USR_CD                  -- ユーザーコード
-            ,USR_ID                 -- ユーザーID
-            ,USR_NAME               -- ユーザー名
-            ,RH_FLG                 -- RHフラグ
-            ,BLD_TYP_CD             -- 血液型コード
-            ,ICN_URL                -- アイコンURL
+            TU.USR_CD                  -- ユーザーコード
+            ,TU.USR_ID                 -- ユーザーID
+            ,TU.USR_NAME               -- ユーザー名
+            ,TU.RH_FLG                 -- RHフラグ
+            ,TU.BLD_TYP_CD             -- 血液型コード
+            ,TU.ICN_URL                -- アイコンURL
+            ,TJ.EVNT_CD                -- イベントコード
         FROM
-            T_USR
-    ")
-    ;
+            T_USR TU
+        LEFT OUTER JOIN
+            T_JN_EVNT TJ
+        ON
+            TU.USR_CD = TJ.USR_CD
+    ");
 
     SET @event_num = "";
 
@@ -98,7 +101,20 @@ BEGIN
         SET @query_key = CONCAT(@query_key,")");
     END IF;
 
-    SET @query_text = CONCAT(@query,@event_num,@query_key,";");
+    SET @group = "";
+
+    IF IFNULL(_evnt_num, '') = '' THEN
+        SET @group = CONCAT(@group,"
+            TU.USR_CD                  -- ユーザーコード
+            ,TU.USR_ID                 -- ユーザーID
+            ,TU.USR_NAME               -- ユーザー名
+            ,TU.RH_FLG                 -- RHフラグ
+            ,TU.BLD_TYP_CD             -- 血液型コード
+            ,TU.ICN_URL                -- アイコンURL
+    ");
+    END IF;
+
+    SET @query_text = CONCAT(@query,@event_num,@query_key,@group,";");
 
     -- 実行
     PREPARE main_query FROM @query_text;
