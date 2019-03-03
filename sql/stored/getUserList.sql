@@ -80,31 +80,28 @@ BEGIN
 
     IF IFNULL(_key_word_1, '') != '' THEN
         IF IFNULL(_evnt_num, '') = '' THEN
-            SET @query_key = CONCAT(" WHEN ");
+            SET @query_key = CONCAT(@query_key," WHEN ");
         END IF;
 
-        SET @query_key = CONCAT(@query_key,"USR_NAME IN(");
+        SET @query_key = CONCAT(@query_key," USR_NAME = ");
         SET @query_key = CONCAT(@query_key,"'",_key_word_1,"'");
     END IF;
 
     IF IFNULL(_key_word_2, '') != '' THEN
-        SET @query_key = CONCAT(@query_key,",");
+        SET @query_key = CONCAT(@query_key," OR USR_NAME = ");
         SET @query_key = CONCAT(@query_key,"'",_key_word_2,"'");
     END IF;
 
     IF IFNULL(_key_word_3, '') != '' THEN
-        SET @query_key = CONCAT(@query_key,",");
+        SET @query_key = CONCAT(@query_key," OR USR_NAME = ");
         SET @query_key = CONCAT(@query_key,"'",_key_word_3,"'");
-    END IF;
-
-    IF IFNULL(_key_word_1, '') != '' THEN
-        SET @query_key = CONCAT(@query_key,")");
     END IF;
 
     SET @group = "";
 
     IF IFNULL(_evnt_num, '') = '' THEN
         SET @group = CONCAT(@group,"
+            GROUP BY
             TU.USR_CD                  -- ユーザーコード
             ,TU.USR_ID                 -- ユーザーID
             ,TU.USR_NAME               -- ユーザー名
